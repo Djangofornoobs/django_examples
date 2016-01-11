@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset='utf-8'>
+	<title>Agencia de viajes virtual</title>
+<body>
+<h2>Bienvenido a la agencia de viajes virtual</h2>
+	{% block sidebar %}
+	<ul>
+	    <li><a href="/">Home</a></li>
+	    {% if user.is_authenticated %}
+                <h3>Usuario {{user.first_name}} {{user.last_name}} ({{user.username}}) identificado</h3>
+	    <li><a href="/addDestino">Crear destino</a></li>
+            {% endif %}
+	    <li><a href="/listadestinos">Listar destinos</a></li>
+	    {% if user.is_authenticated %}
+	    <li><a href="/addViaje">Crear Viaje</a></li>
+	    {% endif %}
+	    <li><a href="/listaviaje">Listar Viajes</a></li>
+	    <li><a href="/addRuta">Crear ruta</a></li>
+	    <li><a href="/listaruta">Listar Rutas</a></li>
+	    {% if user.is_authenticated %}
+	    	<li><a href="/logout">Logout</a></li>
+	    {% else %}
+		<li><a href="/login">Identificarse</a></li>
+	    {% endif %}
+	</ul>
+	{% endblock %}
+	{% block content %}
+		{% if user.is_authenticated %}
+			<ul>
+			<form id='form' method='post' action=''>{% csrf_token %}
+				<table>{{form}}</table>
+				<p><input type='submit' value='Registrar'></p>
+			</form>
+			</ul>
+		{% endif %}
+	{% endblock %}
+
+</body>
+</html>

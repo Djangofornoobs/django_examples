@@ -1,0 +1,22 @@
+{% extends "index.html" %}
+
+	{% block content %}
+
+	{% if rutaList %}
+		<li>Rutas disponibles:</li>
+		{% for Ruta in rutaList %}
+			{% for Viaje in Ruta.viajes.all %}
+				<ul><a href="">1</a></ul>
+			{% endfor %}
+			<ul><a href="">{{Ruta.totalDias}}</a></ul>
+			<ul><a href="">{{Ruta.totalCoste}}</a></ul>
+			<hr>
+		{% endfor %}
+
+	{% else %}
+
+	Sin Destinos.
+
+	{% endif %}
+
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends "index.html" %}
+
+{% block content %}
+	<form id='form' method='post' action=''>{% csrf_token %}
+		<table>{{form}}</table>
+		<p><input type='submit' value='Registrar'></p>
+	</form>
+{% endblock %}
+

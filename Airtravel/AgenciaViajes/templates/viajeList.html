@@ -1,0 +1,19 @@
+{% extends "index.html" %}
+
+	{% block content %}
+
+	{% if viajeList %}
+		<li>Viajes disponibles:</li>
+		{% for Viaje in viajeList %}
+	   		<ul><a href="{% url 'viajes.views.viajeDetail' viaje_id=Viaje.id %}">{{Viaje.destino}}</a> / 
+			<li><a href="{% url 'viajes.views.editarViaje' viaje_id=Viaje.id %}">Editar Viaje</a></li>
+			<hr></ul>
+		{% endfor %}
+
+	{% else %}
+
+	Sin Viajes.
+
+	{% endif %}
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "index.html" %}
+
+	{% block content %}
+
+	{% if destinoList %}
+		<li>Destinos disponibles:</li>
+		{% for Destino in destinoList %}
+	   		<ul><a href="{% url 'viajes.views.destinoDetail' destino_id=Destino.id %}">{{Destino.lugar}}</a></ul>
+			<hr>
+		{% endfor %}
+
+	{% else %}
+
+	Sin Destinos.
+
+	{% endif %}
+
+{% endblock %}
