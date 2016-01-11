@@ -1,0 +1,162 @@
+<!doctype html>
+<html>
+	<head>
+		{% load staticfiles %}
+		<style type="text/css">
+	
+			#titulo_web{
+				padding:5px;
+				font-size:10px;
+				color:rgb(250,250,250);
+				text-align:center;
+				background:rgba(0, 0, 87, 0.5);
+				-moz-box-shadow: 10px 10px 75px #000000;
+				-webkit-box-shadow: 10px 10px 75px #000000;
+				border:inset 6px #430dd9;
+				-moz-border-radius-topleft: 75px;
+				-moz-border-radius-topright:75px;
+				-moz-border-radius-bottomleft:75px;
+				-moz-border-radius-bottomright:75px;
+				-webkit-border-top-left-radius:75px;
+				-webkit-border-top-right-radius:75px;
+				-webkit-border-bottom-left-radius:75px;
+				-webkit-border-bottom-right-radius:75px;
+			}
+
+			#titulo_web:hover{
+				-webkit-animation:salticos linear 0.8s infinite;
+			}
+
+			#autor_yo{
+				padding:10px;
+				font-size:14px;
+				color:rgb(250,250,250);
+			}
+			#mensajito{
+				padding:25px;
+				text-align:center;
+				color:rgb(250,250,250);
+				font-weight:bold;
+			}
+			#botonsito{
+				text-align:center;
+			}
+			#PV{
+				color:rgba(0,250,0,0.7);
+			}
+			#PD{
+				color:rgba(250,0,0,0.7);
+			}
+			#PE{
+				color:rgba(250,250,0,0.7);
+			}
+			#TOP{
+				color:rgb(255,255,0);
+			}
+			#UCL{
+				color:rgb(0,250,0);
+			}
+			#UEL{
+				color:rgb(65,65,250);
+			}
+			#DESC{
+				color:rgb(250,15,15);
+			}
+
+			@-webkit-keyframes salticos{
+			0% {-webkit-transform:rotate(0deg);}
+			33% {-webkit-transform:rotate(1deg);}
+			66% {-webkit-transform:rotate(-1deg);}
+			100% {-webkit-transform:rotate(0deg);}
+			}
+
+			html{
+				font-family:sans-serif;
+			}
+
+			aside{
+				text-align:center;
+				color:rgb(250,250,250);
+				float:center;
+				padding:2px;
+				background:rgba(0, 0, 87, 0.5);
+				-moz-box-shadow: 10px 10px 75px #000000;
+				-webkit-box-shadow: 10px 10px 75px #000000;
+				border:inset 6px #430dd9;
+				-moz-border-radius-topleft: 75px;
+				-moz-border-radius-topright:75px;
+				-moz-border-radius-bottomleft:75px;
+				-moz-border-radius-bottomright:75px;
+				-webkit-border-top-left-radius:75px;
+				-webkit-border-top-right-radius:75px;
+				-webkit-border-bottom-left-radius:75px;
+				-webkit-border-bottom-right-radius:75px;
+			}
+
+			body{
+				background-attachment: fixed;
+			}
+
+			table{
+				padding:25px;
+			}
+
+			th{
+				background-color:rgba(245,245,255,0.7);
+				padding:8px;
+				color:rgb(0,0,111);
+				text-align:left;
+			}
+
+			tr, td {
+				background-color:rgba(0,0,111,0.7);
+				padding:8px;
+				color:rgb(250,250,250);
+				text-align: left;
+			}
+
+			tr:hover{
+				background-color:rgba(0,0,145,1)
+			}
+
+			a:link, a:visited{
+				color:rgb(250,250,250);
+				text-decoration:none;
+			}
+
+			a:hover, a:active{
+				color:rgb(255,255,255);
+				text-decoration:underline;
+			}
+
+		</style>
+	</head>
+	<body background="{% static 'bg1.jpg' %}" bgproperties="fixed">
+		<div id="titulo_web">
+			<header>
+				<h1>LigaRanks</h1>
+				<h2>Web de la Liga BBVA desarrollada por Jesús Rojas Ramos</h2>
+			</header>
+		</div>
+		<div id="menu">
+			<aside>
+				<a href="/">Clasificación</a> &nbsp; <a href="/calendario">Calendario</a> &nbsp; <a href="/contacto">Información de contacto</a> &nbsp;
+			{% if user.is_authenticated %}
+				Conectado como <a href="/home">{{ user.username }}</a> &nbsp; <a href="/logout">Desconectarse</a>
+			{% else %}
+				<a href="/login">Conectarse</a> &nbsp; <a href="/registro">Registrarse</a>
+			{% endif %}
+			</aside>
+		</div>
+			<section>
+
+			{% block contenido %}{% endblock %}
+
+			</section>
+		<div id="autor_yo">
+			<footer>
+				(C) 2016 Jesús Rojas Ramos
+			</footer>
+		</div>
+	</body>
+</html>

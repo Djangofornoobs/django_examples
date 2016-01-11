@@ -1,0 +1,90 @@
+{% extends "estructura.html" %}
+{% block contenido %}
+
+{% load staticfiles %}
+
+<title>{{ code }} - LigaRanks</title>
+
+<table align="center">
+	<tr>
+		<th>Escudo</th>
+		<th>Equipo</th>
+		<th>Código</th>
+		<th>Posición</th>
+		<th>Puntos</th>
+		<th>Goles a favor</th>
+		<th>Goles en contra</th>
+	</tr>
+	{% for equipo in equipos %}
+		{% if equipo.codigo == code %}
+		<tr>
+			<td><img src="{% static equipo.escudo %}"></td>
+			<td>{{ equipo.nombre }}</td>
+			<td>{{ equipo.codigo }}</td>
+			<td>{{ forloop.counter }}º</td>
+			<td>{{ equipo.puntos }}</td>
+			<td>{{ equipo.goles_favor }}</td>
+			<td>{{ equipo.goles_contra }}</td>
+		</tr>
+
+</table>
+
+		<div id="mensajito">
+			<p>Partidos del {{ equipo.nombre }}</p>
+		</div>
+
+		<table align="center">
+		{% for partido in partidos %}
+			{% if partido.equipo_local.codigo == code %}
+				<tr>
+					<td>{{ partido.equipo_local.codigo }}</td>
+						{% if partido.jugado == 'S' %}
+							{% if partido.goles_local > partido.goles_visitante %}
+								<td><div id="PV">{{ partido.goles_local }}</div></td>
+								<td><div id="PV">{{ partido.goles_visitante }}</div></td>
+							{% endif %}
+							{% if partido.goles_local == partido.goles_visitante %}
+								<td><div id="PE">{{ partido.goles_local }}</div></td>
+								<td><div id="PE">{{ partido.goles_visitante }}</div></td>
+							{% endif %}
+							{% if partido.goles_local < partido.goles_visitante %}
+								<td><div id="PD">{{ partido.goles_local }}</div></td>
+								<td><div id="PD">{{ partido.goles_visitante }}</div></td>
+							{% endif %}
+						{% else %}
+							<td>-</td>
+							<td>-</td>
+						{% endif %}
+					<td><a href="/equipo/{{ partido.equipo_visitante.codigo }}">{{ partido.equipo_visitante.codigo }}</a></td>
+				</tr>
+			{% endif %}
+			{% if partido.equipo_visitante.codigo == code %}
+				<tr>
+					<td><a href="/equipo/{{ partido.equipo_local.codigo }}">{{ partido.equipo_local.codigo }}</a></td>
+						{% if partido.jugado == 'S' %}
+							{% if partido.goles_local > partido.goles_visitante %}
+								<td><div id="PD">{{ partido.goles_local }}</div></td>
+								<td><div id="PD">{{ partido.goles_visitante }}</div></td>
+							{% endif %}
+							{% if partido.goles_local == partido.goles_visitante %}
+								<td><div id="PE">{{ partido.goles_local }}</div></td>
+								<td><div id="PE">{{ partido.goles_visitante }}</div></td>
+							{% endif %}
+							{% if partido.goles_local < partido.goles_visitante %}
+								<td><div id="PV">{{ partido.goles_local }}</div></td>
+								<td><div id="PV">{{ partido.goles_visitante }}</div></td>
+							{% endif %}
+						{% else %}
+							<td>-</td>
+							<td>-</td>
+						{% endif %}
+					<td>{{ partido.equipo_visitante.codigo }}</td>
+				</tr>
+			{% endif %}
+		{% endfor %}
+		</table>
+
+		{% endif %}
+	{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "estructura.html" %}
+ 
+{% block contenido %}
+    {% if form.errors %}
+        <div id="mensajito">Usuario o contraseña incorrectos. Inténtalo de nuevo.</div>
+    {% endif %}
+ 
+    <form method="post" action="{% url 'django.contrib.auth.views.login' %}">
+        {% csrf_token %}
+        <table align="center">
+            <tr>
+                <th>Nombre de usuario</th>
+                <td>{{ form.username }}</td>
+            </tr>
+            <tr>
+                <th>Contraseña</th>
+                <td>{{ form.password }}</td>
+            </tr>
+        </table>
+		<div id="botonsito">
+        	<input type="submit" value="Iniciar sesión" align="middle"/> <input type="hidden" name="next" value="{{ next }}"/>
+		</div>
+    </form>
+ 
+{% endblock %}

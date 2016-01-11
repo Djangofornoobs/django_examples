@@ -1,0 +1,28 @@
+{% extends "estructura.html" %}
+{% block contenido %}
+
+<title> Calendario - LigaRanks</title>
+{% for jornada in jornadas %}
+	<table align="center">
+	<tr>
+		<th> J. {{ jornada.numero }}</th>
+	</tr>
+	{% for partido in partidos %}
+		{% if partido.jornada == jornada %}
+			<tr>
+				<td><a href="/equipo/{{ partido.equipo_local.codigo }}">{{ partido.equipo_local.codigo }}</a></td>
+				{% if partido.jugado == 'S' %}
+					<td>{{ partido.goles_local }}</td>
+					<td>{{ partido.goles_visitante }}</td>
+				{% else %}
+					<td>-</td>
+					<td>-</td>
+				{% endif %}
+				<td><<a href="/equipo/{{ partido.equipo_visitante.codigo }}">{{ partido.equipo_visitante.codigo }}</a></td>
+			</tr>
+		{% endif %}
+	{% endfor %}
+	</table>
+{% endfor %}
+
+{% endblock %}

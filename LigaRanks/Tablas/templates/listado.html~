@@ -1,0 +1,24 @@
+{% extends "estructura.html" %}
+
+{% block contenido %}
+{% for equipo in equipo.object_list %}
+<title>LigaRanks - Ligas</title>
+<article>
+	<h3>{{ equipo.nombre }}</h3>
+	<p>Enlace a la liga</p>
+</article>
+{% endfor %}
+<nav>
+	{% if equipo.has_previous %}
+	<a href="?page={{ equipo.previous_page_number }}">Página anterior</a>
+	{% endif %}
+</nav>
+<nav>
+	{% if equipo.has_next %}
+	<a href="?page={{ equipo.next_page_number }}">Página siguiente</a>
+	{% endif %}
+</nav>
+
+<p>Página {{ equipo.number }}  de {{ equipo.paginator.num_pages }}</p>
+
+{% endblock %}

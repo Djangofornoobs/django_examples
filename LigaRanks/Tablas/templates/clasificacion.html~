@@ -1,0 +1,43 @@
+{% extends "estructura.html" %}
+{% block contenido %}
+
+{% load staticfiles %}
+
+<title>Clasificación - LigaRanks</title>
+
+<table align="center">
+	<tr>
+		<th><strong>Posición</strong></th>
+		<th><strong>Equipo</strong></th>
+		<th><strong>Pts</strong></th>
+		<th><strong>GF</strong></th>
+		<th><strong>GC</strong></th>
+		<th><strong>DG</strong></th>
+	</tr>
+	{% for equipo in equipos %}
+		<tr>
+			{% if forloop.counter == 1 %}
+				<td><div id="TOP">{{ forloop.counter }}º</div></td>
+			{% endif %}
+			{% if forloop.counter >= 2 and forloop.counter <= 4 %}
+				<td><div id="UCL">{{ forloop.counter }}º</div></td>
+			{% endif %}
+			{% if forloop.counter == 5 or forloop.counter == 6 %}
+				<td><div id="UEL">{{ forloop.counter }}º</div></td>
+			{% endif %}
+			{% if forloop.counter >= 7 and forloop.counter <= 17 %}
+				<td>{{ forloop.counter }}º/td>
+			{% endif %}
+			{% if forloop.counter >= 18 and forloop.counter <= 20 %}
+				<td><div id="DESC">{{ forloop.counter }}º</div></td>
+			{% endif %}
+			<td><a href="/equipo/{{ equipo.codigo }}"> {{ equipo.nombre }}</a></td>
+			<td>{{ equipo.puntos }}</td>
+			<td>{{ equipo.goles_favor }}</td>
+			<td>{{ equipo.goles_contra }}</td>
+			<td>{{ equipo.goles_favor|add:equipo.goles_contra }}</td>
+		</tr>
+	{% endfor %}
+</table>
+
+{% endblock %}

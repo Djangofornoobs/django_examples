@@ -1,0 +1,38 @@
+{% extends "estructura.html" %}
+ 
+{% block contenido %}
+	<title>Tu cuenta - LigaRanks</title>
+    <table>
+        <tr>
+            <th>Nombre de usuario</th>
+            <td>{{ user.username }}</td>
+        </tr>
+ 
+        <tr>
+            <th>E-mail</th>
+            <td>{{ user.email }}</td>
+        </tr>
+ 
+        <tr>
+            <th>Nombre</th>
+            <td>{{ user.first_name }}</td>
+        </tr>
+ 
+        <tr>
+            <th>Apellidos</th>
+            <td>{{ user.last_name }}</td>
+        </tr>
+ 
+        <tr>
+            <th>Registrado desde</th>
+            <td>{{ user.date_joined }}</td>
+        </tr>
+ 
+        <tr>
+            <th>Última conexión</th>
+            <td>{{ user.last_login }}</td>
+        </tr>
+ 
+    </table> 
+ 
+{% endblock %}

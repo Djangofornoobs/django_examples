@@ -1,0 +1,45 @@
+{% extends "estructura.html" %}
+{% block contenido %}
+ 
+    {% if form.errors %}
+		<div id="mensajito">
+        	<p>{{ form.errors }}</p>
+		</div>
+    {% endif %}
+ 
+    <form method="post" action="{% url 'register' %}">
+ 
+        {% csrf_token %}
+ 
+        <table align="center">
+            <tr>
+                <th>Nombre de usuario</th>
+                <td>{{ form.username }}</td>
+            </tr>
+            <tr>
+                <th>Contraseña</th>
+                <td>{{ form.password }}</td>
+            </tr>
+ 
+            <tr>
+                <th>E-mail</th>
+                <td>{{ form.email }}</td>
+            </tr>
+ 
+            <tr>
+                <th>Nombre</th>
+                <td>{{ form.first_name }}</td>
+            </tr>
+ 
+            <tr>
+                <th>Apellidos</th>
+                <td>{{ form.last_name }}</td>
+            </tr>
+ 
+        </table>
+		<div id="botonsito">
+        	<input type="submit" value="Registrarse"/>
+		</div>
+    </form>
+ 
+{% endblock %}
